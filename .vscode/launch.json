@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Medocles",
+            "request": "launch",
+            "mainClass": "Medocles",
+            "projectName": "expert_system_49ca332f"
+        }
+    ],
+}
