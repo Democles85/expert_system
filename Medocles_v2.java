@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Medocles_v2 {
     static void covid_Symptoms() {
+        System.out.println("----------------------------------------------");
         System.out.println("  Fever?");
         System.out.println("  Cough?");
         System.out.println("  Tiredness?");
@@ -16,6 +17,24 @@ public class Medocles_v2 {
         System.out.println("  Discolouration of fingers?");
         System.out.println("  Red or irritated eyes?");
         System.out.println("  All of them?");
+        System.out.println("----------------------------------------------");
+    }
+
+    static void pneumonia_Symptoms() {
+        System.out.println("----------------------------------------------");
+        System.out.println("  Difficulty breathing?");
+        System.out.println("  Sweating and/or shivering?");
+        System.out.println("  Rapid heartbeat?");
+        System.out.println("  Loss of appettite?");
+        System.out.println("  Chest pain?");
+        System.out.println("  Joint and/or muscle pain?");
+        System.out.println("  High temperature?");
+        System.out.println("  Coughing up blood?");
+        System.out.println("  Fatigue?");
+        System.out.println("  Wheezing?");
+        System.out.println("  Headaches?");
+        System.out.println("  All of them?");
+        System.out.println("  Maybe one of the symptoms above are more accurate to what you have?");
     }
 
     static void yes_answer(List<String> list, String before_answer) {
@@ -41,6 +60,29 @@ public class Medocles_v2 {
         System.out.println(answers);
         chance = ((n + 1) / size) * 100;
         System.out.println("The chances of you containing Covid-19 based on the symptoms is: " + chance + "%");
+    }
+
+    static void no_answer(List<String> list, String before_answer) {
+        Scanner input = new Scanner(System.in);
+        float chance = 1;
+        float size = list.size();
+
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(before_answer);
+        // System.out.println(answers);
+        String answer;
+        int n;
+        System.out.print("How many of the symptomes above are you showing? ");
+        n = input.nextInt();
+        System.out.println("Enter the symptoms that you show below.");
+        for (int i = 0; i <= n; i++) {
+            answer = input.nextLine();
+            answer = answer.toLowerCase();
+            answers.add(answer);
+        }
+        System.out.println(answers);
+        chance = ((n + 1) / size) * 100;
+        System.out.println("The chances of you containing Pneumonia based on the symptoms is: " + chance + "%");
     }
 
     public static void main(String[] args) {
@@ -87,13 +129,14 @@ public class Medocles_v2 {
                     yes_answer(list0, answer0);
                     break;
                 case "no":
-                    System.exit(0);
+                    pneumonia_Symptoms();
+                    no_answer(list1, answer0);
                     break;
                 default:
                     System.out.print("Please answer with yes or no: ");
                     break;
                 }
-            } while (list0.contains(answer0));
+            } while (!list0.contains(answer0));
         }
     }
 }
