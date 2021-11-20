@@ -187,7 +187,7 @@ public class Medocles_v2 {
         String answer0, answer1;
         // int count = 0;
 
-        System.out.println("\tMedocles V2.0");
+        System.out.println("\tMedocles V2.0.3");
         covid_Symptoms();
         System.out.println("What symptoms are you showing?");
 
