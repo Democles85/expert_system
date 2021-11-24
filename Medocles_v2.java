@@ -36,7 +36,7 @@ public class Medocles_v2 {
         System.out.println("11) Headaches?");
         System.out.println("    Type 11 for all of them");
         // System.out.println(" All of them?");
-        System.out.println("  Maybe one of the symptoms above are more accurate to what you have?");
+        System.out.println("  Maybe the symptoms above are more accurate to what you have?");
     }
 
     static void flu_Symptoms() {
@@ -53,7 +53,7 @@ public class Medocles_v2 {
         System.out.println("9)  Diarrhoea?");
         System.out.println("    Type 9 for all of them");
         // System.out.println(" All of them?");
-        System.out.println("  Maybe one of the symptoms above are more accurate to what you have?");
+        System.out.println("  Maybe the symptoms above are more accurate to what you have?");
     }
 
     static void yes_answer(List<String> list, String before_answer) {
@@ -223,7 +223,7 @@ public class Medocles_v2 {
         String answer0, answer1;
         // int count = 0;
 
-        System.out.println("\tMedocles V2.0.4");
+        System.out.println("\tMedocles V2.1.0");
         covid_Symptoms();
         System.out.println("What symptoms are you showing?");
 
