@@ -56,7 +56,7 @@ public class Medocles_v2 {
         System.out.println("  Maybe the symptoms above are more accurate to what you have?");
     }
 
-    static void yes_answer(List<String> list, String before_answer) {
+    static void yes_answer(List<String> list, List<String> covid_Formated, String before_answer) {
         Scanner input = new Scanner(System.in);
 
         float chance = 1;
@@ -73,7 +73,8 @@ public class Medocles_v2 {
         n = input.nextInt();
         // String[] a = new String[n];
         if (n == 10) {
-            answers.addAll(list);
+            answers.remove(0);
+            answers.addAll(covid_Formated);
             answers.replaceAll(String::toUpperCase);
             String result = answers.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(" | ", "[ ", " ]"));
             System.out.println(result);
@@ -102,7 +103,8 @@ public class Medocles_v2 {
         }
     }
 
-    static void no_answer(List<String> list0, List<String> list1, String before_answer) {
+    static void no_answer(List<String> list0, List<String> list1, List<String> pneumonia_Formated,
+            List<String> flu_Formated, String before_answer) {
         Scanner input = new Scanner(System.in);
         float chance = 1;
         // float size0 = list0.size(), size1 = list1.size();
@@ -121,7 +123,7 @@ public class Medocles_v2 {
             System.out.print("How many of the symptoms above are you showing? ");
             n = input.nextInt();
             if (n == 11) {
-                answers.addAll(list0);
+                answers.addAll(pneumonia_Formated);
                 answers.replaceAll(String::toUpperCase);
                 String result = answers.stream().map(x -> String.valueOf(x))
                         .collect(Collectors.joining(" | ", "[ ", " ]"));
@@ -158,7 +160,7 @@ public class Medocles_v2 {
                 System.out.print("How many of the symptoms above are you showing? ");
                 n = input.nextInt();
                 if (n == 9) {
-                    answers.addAll(list0);
+                    answers.addAll(flu_Formated);
                     answers.replaceAll(String::toUpperCase);
                     String result = answers.stream().map(x -> String.valueOf(x))
                             .collect(Collectors.joining(" | ", "[ ", " ]"));
@@ -188,7 +190,8 @@ public class Medocles_v2 {
                     }
                 }
             } else {
-                System.exit(0);
+                System.out.println("You don't have to worry, you just have a simple: "
+                        + before_answer.substring(0, 1).toUpperCase() + before_answer.substring(1).toLowerCase());
             }
         } else {
             System.exit(0);
@@ -203,6 +206,9 @@ public class Medocles_v2 {
                 "red or irritated eyes", "red eyes", "irritated eyes", "difficulty breathing", "loss of speech",
                 "chest pain" };
         List<String> list0 = Arrays.asList(covid_Symptoms);
+        String[] covid_Symptoms_Formated = { "Fever", "Cough", "Tiredness", "Loss of Taste or Smell", "Sore Throat",
+                "Headache", "Aches and pains", "Diarrhoea", "Discolouration of Fingers", "Red or Irritated Eyes" };
+        List<String> list_covid_Formated = Arrays.asList(covid_Symptoms_Formated);
 
         String[] pneumonia_Symptoms = { "fever", "difficulty breathing", "sweating and shivering", "sweating",
                 "shivering", "rapid heartbeat", "loss of appetite", "chest pain", "joint and muscle pain", "joint pain",
@@ -211,6 +217,10 @@ public class Medocles_v2 {
                 "aches and pains", "diarrhoea", "discolouration of fingers", "red or irritated eyes", "red eyes",
                 "irritated eyes", "loss of speech", "loss of appettite" };
         List<String> list1 = Arrays.asList(pneumonia_Symptoms);
+        String[] pneumonia_Symptoms_Formated = { "Difficulty Breathing", "Sweating and/or shivering", "Rapid Hearbeat",
+                "Loss of Appetite", "Chest Pain", "Joint and/or Muscle Pain", "High Temperature", "Coughing up Blood",
+                "Fatigue", "Wheezing", "Headaches" };
+        List<String> list_pneumonia_Formated = Arrays.asList(pneumonia_Symptoms_Formated);
 
         String[] flu_Symptoms = { "fever", "feverish/chills", "feverish", "chills", "cough", "sore throat",
                 "runny or stuffy nose", "muscle or body aches", "headaches", "fatigue", "vomiting", "diarrhea",
@@ -218,12 +228,15 @@ public class Medocles_v2 {
                 "aches and pains", "diarrhoea", "discolouration of fingers", "red or irritated eyes", "red eyes",
                 "irritated eyes", "difficulty breathing", "loss of speech", "chest pain" };
         List<String> list2 = Arrays.asList(flu_Symptoms);
+        String[] flu_Formated = { "Feverish and/or Chills", "Cough", "Sore throat", "Runny or stuffy nose",
+                "Muscle or body aches", "Headaches", "Vomiting", "Fatigue", "Diarrhoea" };
+        List<String> list_flu_Formated = Arrays.asList(flu_Formated);
 
         // Different variables
         String answer0, answer1;
         // int count = 0;
 
-        System.out.println("\tMedocles V2.1.0");
+        System.out.println("\tMedocles V2.1.1");
         covid_Symptoms();
         System.out.println("What symptoms are you showing?");
 
@@ -242,11 +255,11 @@ public class Medocles_v2 {
                 answer1 = answer1.toLowerCase();
                 switch (answer1) {
                 case "yes":
-                    yes_answer(list0, answer0);
+                    yes_answer(list0, list_covid_Formated, answer0);
                     break;
                 case "no":
                     pneumonia_Symptoms();
-                    no_answer(list1, list2, answer0);
+                    no_answer(list1, list2, list_pneumonia_Formated, list_flu_Formated, answer0);
                     break;
                 default:
                     System.out.print("Unknown answer!");
